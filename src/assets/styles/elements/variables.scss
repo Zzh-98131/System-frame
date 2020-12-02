@@ -1,0 +1,16 @@
+// layout
+$header_height: 60px;
+$header_background_color: #336dcc;
+
+$footer_height: 60px;
+
+$side_nav_bar_width: 200px;
+$side_nav_bar_hidden_width: 65px;
+
+:export {
+  header_height: $header_height;
+  header_background_color: $header_background_color;
+  footer_height: $footer_height;
+  side_nav_bar_width: $side_nav_bar_width;
+  side_nav_bar_hidden_width: $side_nav_bar_hidden_width;
+}
