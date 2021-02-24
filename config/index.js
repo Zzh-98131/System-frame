@@ -5,17 +5,39 @@
 const path = require('path')
 
 module.exports = {
-  dev: {
+  dev: { // dev环境
 
     // Paths
-    assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
-    proxyTable: {},
+    assetsSubDirectory: 'static', // 编译输出的二级目录
+    assetsPublicPath: '/', // 编译发布的根目录，可配置为资源服务器域名或CDN域名
+    proxyTable: { // 配置后台代理
+      '/api_edims': {
+        target:  // 本地测试环境请求后台接口的域名和端口号
+        // 'http://192.168.162.219/edims-admin-dev-zy',
+        'http://192.168.163.138:8080/EDIMS-WebAdmin',
+        changeOrigin: true, // 开启代理
+
+        pathRewrite: {
+          '^/api_edims': '' //这里理解成用‘/api_edims’代替target里面的地址，后面组件中我们掉接口时直接用api代替 比如我要调用'http://40.00.100.100:3002/user/add'，直接写‘/api/user/add’即可
+        }
+      },
+      '/socket': {
+        target:
+        // 'ws://192.168.162.219/edims-admin-dev-zy',
+        'ws://192.168.163.138:8080/EDIMS-WebAdmin',
+        changeOrigin: true,
+        ws: true,
+        secure: false,
+        pathRewrite: {
+          '^/socket': ''
+        }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
     port: 8080, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
-    autoOpenBrowser: true,
+    autoOpenBrowser: true, // 运行时自动打开浏览器
     errorOverlay: true,
     notifyOnErrors: true,
     poll: false, // https://webpack.js.org/configuration/dev-server/#devserver-watchoptions-
@@ -36,7 +58,7 @@ module.exports = {
     cssSourceMap: true
   },
 
-  build: {
+  build: { // production环境
     // Template for index.html
     index: path.resolve(__dirname, '../dist/index.html'),
 

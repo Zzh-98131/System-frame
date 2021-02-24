@@ -1,14 +1,38 @@
+// 下拉框
+.el-dropdown-menu--medium {
+}
+
+// 滚动条
 .el-scrollbar{
   width: 100%;
   height: 100%;
+  &.is-vertical{ // 竖直的滚动条，宽度为厚度
+    background: rgba($color: #E6E6E6, $alpha: 0); // 背景色透明度为0，则不需要时隐藏滚动条
+    // width:4px; // 滚动条宽度
+    // opacity: 0.8;
+  }
+  &.is-horizontal{ // 横向滚动条
+    // height: 6px;
+    background: rgba($color: #E6E6E6, $alpha: 0); // 背景色透明度为0，则不需要时隐藏滚动条
+  }
 }
 .el-scrollbar__wrap{
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 }
 .el-scrollbar__thumb {
-  background-color: rgba(0, 255, 255, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
+// 选择器
+.el-select-dropdown {
+  .el-scrollbar {
+    .el-scrollbar__wrap {
+      overflow: scroll !important;
+    }
+  }
+}
+
+// 菜单
 .el-menu{
   overflow-x: hidden;
 }

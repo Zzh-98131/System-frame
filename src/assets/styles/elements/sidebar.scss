@@ -1,5 +1,5 @@
 #app {
-  .main-wrapper {
+  .main_wrapper {
     min-height: 100%;
     transition: margin-left .28s;
     width: calc(100% - #{$side_nav_bar_width});
@@ -7,97 +7,222 @@
     position: relative;
   }
 
-  .sidebar-container {
-    // transition: width 0.28s;
+  .sidebar_container {
+    z-index: 9999;
+    background-color: $side_nav_bar_background_color;
     span { // 菜单字体大小
       font-size: 14px;
     }
     width: $side_nav_bar_width !important;
-    height: 100%;
+    height: calc(100% - #{$header_height}); // 约束侧栏的高度保持在可见区域内
     position: fixed;
     top: $header_height;
-    // bottom: 0;
-    left: 0;
-    margin-bottom: 20px;
     overflow-x: hidden !important;
 
+    /**** nav_bar_item ****/
+    .menu_title {
+      margin-left: 15px; // 加起来等于30px
+      margin-right: 15px; // 加起来等于30px
+      cursor: pointer;
+      color: #ACB5C2;
+      font-size: 20px;
+      &:hover {
+        color: #FFFFFF;
+        transition: color .4s;
+      }
+    }
+    .menu_logo_opened {
+      width: calc(#{$side_nav_bar_width} - 9px); // -=padding-left，与padding-left一致
+      padding-left: 9px;
+    }
+    .menu_logo_hidden {
+      width: $side_nav_bar_hidden_width;
+    }
+    .menu_logo {
+      position: fixed;
+      top: 0;
+      background-color: $side_nav_bar_background_color;
+      height: $header_height;
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    // 英文版
+    .en_menu_title{
+      font-size: 14px;
+      padding-left: 22px;
+    }
+    /**********************/
+
+    .el-submenu>.el-submenu__title, // 侧栏展开时每一项、收缩时不含弹出菜单的样式
+    .el-menu-item {
+      line-height: $side_child_height;
+      height: $side_child_height;
+      color: $side_word_color;
+      background-color: $side_nav_bar_background_color;
+      &:hover{ // 悬浮时
+        color: $side_active_color;
+        background-color: $side_nav_bar_background_color !important;
+      }
+      &.is-active { // 激活后
+        color: $side_active_color;
+        background-color: $side_active_background_color;
+      }
+    }
+
+    .menu_item_wrap { // 侧栏每一项
+
+      .el-submenu.parents>.el-submenu__title, // 大菜单
+      .el-menu-item.parents {
+        height: $side_parent_height;
+        line-height: $side_parent_height;
+        // border-top: rgba($color: #424c5a, $alpha: 1) 1px solid;
+        // border-bottom: rgba($color: #424c5a, $alpha: 1) 1px solid;
+      }
+
+      // 细分样式设置
+      &#active_5395, // 监控管理
+      &#active_5396, // 运维管理
+      &#active_5397 // 系统管理
+      {
+        border-top: rgba($color: #424c5a, $alpha: 1) 1px solid;
+      }
+      &#active_5397{
+        border-bottom: rgba($color: #424c5a, $alpha: 1) 1px solid;
+      }
+
+      &#active_5395.active_item, // 监控管理下的子项被点击后的样式
+      &#active_5396.active_item, // 运维管理下的子项被点击后的样式
+      &#active_5397.active_item, // 系统管理下的子项被点击后的样式
+      {
+        border-left: rgba($color: #4b8dd2, $alpha: 1) 4px solid; // 侧边高亮条
+        border-radius: 6px 0 0 6px;
+
+        .el-submenu>.el-submenu__title, // 侧栏展开时每一项、收缩时不含弹出菜单的样式
+        .el-menu-item {
+          background-color: $side_active_background_color !important;
+
+          // 错位修复， 与上面border-left的宽度一致
+          .menu_sub,
+          .menu_item
+          {
+            margin-left: -4px;
+          }
+        }
+      }
+    }
+
     .scrollbar-wrapper {
-      height: 100%;
+      height: calc(100% - #{$header_height});
       overflow-x: hidden !important;
 
       .el-scrollbar__wrap {
         overflow-x: hidden !important;
-      }
 
-      a {
-        display: inline-block;
-        width: 100%;
-        overflow: hidden;
-        text-decoration: none;
-      }
-      .el-menu {
-        border: none;
-        height: 100%;
-        width: 100% !important;
-      }
+        .el-menu {
+          border: none;
+          height: calc(100% - #{$header_height});
+          width: 100% !important;
+        }
 
-      .svg-icon {
-        margin-right: 16px;
-      }
+        .el-submenu {
 
+          &>.el-submenu__title {
+            padding: 0 !important;
+          }
+        }
+      }
     }
+    
   }
 
-  .hideSidebar {
-    .sidebar-container {
-      width: $side_nav_bar_hidden_width !important;
-    }
-
-    .main-wrapper {
+  .hide_side_bar {
+    .main_wrapper {
       margin-left: $side_nav_bar_hidden_width;
     }
 
-    .submenu-title-noDropdown {
-      padding: 0 !important;
-      position: relative;
+    .sidebar_container {
+      z-index: 9999;
+      width: $side_nav_bar_hidden_width !important;
 
-      .el-tooltip {
-        padding: 0 !important;
-
-        .svg-icon {
-          margin-left: 20px;
-        }
+      .el-menu {
+        width: 100% !important;
       }
-    }
 
-    .el-submenu {
-      overflow: hidden;
-
-      &>.el-submenu__title {
+      .submenu-title-noDropdown {
         padding: 0 !important;
-        .svg-icon {
-          margin-left: 20px;
-        }
-
-        .el-submenu__icon-arrow {
-          display: none;
-        }
+        position: relative;
       }
-    }
 
-    .el-menu--collapse {
       .el-submenu {
-        &>.el-submenu__title {
-          &>span {
-            height: 0;
-            width: 0;
-            overflow: hidden;
-            visibility: hidden;
-            display: inline-block;
+        overflow: hidden;
+
+        &>.el-submenu__title { // 收缩侧栏的含图标菜单的样式
+          padding: 0 !important;
+          height: $side_parent_height;
+
+          .svg-icon {
+            margin-left: calc((#{$side_nav_bar_hidden_width} - #{$side_nav_bar_svg_size}) / 2); // 在收缩状态下图标的左边距
+            font-size: $side_nav_bar_svg_size;
+          }
+
+          .el-submenu__icon-arrow {
+            display: none;
+          }
+        }
+
+      }
+
+      .el-menu--collapse {
+        .el-submenu {
+          &>.el-submenu__title {
+            &>span {
+              height: 0;
+              width: 0;
+              overflow: hidden;
+              visibility: hidden;
+              display: inline-block;
+            }
           }
         }
       }
     }
   }
+}
 
+.el-menu--vertical {
+
+  .el-menu--popup-right-start {
+    z-index: 9999 !important;
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+
+  >.el-menu--popup {
+    z-index: 9999 !important;
+    padding: 0px;
+    border-radius: 0px;
+    min-width: 110px;
+    background-color: $side_nav_bar_background_color;
+
+    .el-submenu>.el-submenu__title, // 每一项的样式
+    .el-menu-item {
+      z-index: 9999 !important;
+      height: $side_child_height;
+      line-height: $side_child_height;
+
+      color: $side_word_color;
+      background-color: $side_nav_bar_background_color;
+      &:hover{
+        color: $side_active_color;
+        background-color: $side_nav_bar_background_color;
+      }
+    }
+
+    span { // 弹出侧栏文字颜色
+      // color: $side_word_color;
+    }
+  }
 }

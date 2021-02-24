@@ -1,34 +1,54 @@
 @import './elements/element-ui.scss';
-@import './elements/svg.scss';
 @import './elements/variables.scss';
-@import './elements/sidebar.scss';
+@import './elements/sidebar.scss'; // 侧栏样式
+@import './elements/layout.scss'; // 布局样式
+@import './elements/login.scss'; // 登录样式
+
+// 字体引入
+@font-face {
+  font-family: 'SourceHanSansCN-Regular'; /*项目中要引用的字体名称*/
+  src: url(./fonts/SourceHanSansCN-Regular.otf); /*字体文件名*/
+}
+@font-face {
+  font-family: 'SourceHanSansCN-Bold';
+  src: url(./fonts/SourceHanSansCN-Bold.otf);
+}
+@font-face {
+  font-family: 'SourceHanSansCN-Medium';
+  src: url(./fonts/SourceHanSansCN-Medium.otf);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+}
 
 body{
   margin: 0;
   padding: 0;
   height: 100%;
+  background: rgba(0, 0, 0, .1);
 }
 
-// layout
-.app-wrapper .el-header{
-  position: fixed;
+#app {
+  font-family: "Helvetica Neue",Verdana,Tahoma,"Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC","WenQuanYi Micro Hei",sans-serif;
+  position: absolute;
   top: 0;
-  z-index: 9999;
-  overflow: hidden;
+  left: 0;
   width: 100%;
-}
-.app-wrapper .el-main{
-  margin: $header_height 0 0 0; /*$side_nav_bar_width*/
-  min-height: calc(100vh - #{$header_height} - #{$footer_height}); /*最小高度=屏幕高度-(头部高度+尾部高度)*/
-}
-.app-wrapper .el-footer{
-  background: rgba(150, 150, 150, 0.1);
-  // position: absolute;
-  width: 100%;
-  bottom: 0;
+  height: 100%;
 }
 
-.chart-wrapper{
+// svg
+.svg-icon {
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+  fill: currentColor;
+  overflow: hidden;
+}
+
+.chart_wrapper{ // 测试用
   width: 600px;
   height: 300px;
   padding: 10px;

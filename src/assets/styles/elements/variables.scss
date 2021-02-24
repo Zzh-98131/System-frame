@@ -1,16 +1,34 @@
+// 需要在外部调用到的样式变量
+
 // layout
-$header_height: 60px;
+$header_height: 50px;
+$breadcrumb_height: 18px;
 $header_background_color: #336dcc;
 
-$footer_height: 60px;
+$footer_height: 47px;
 
-$side_nav_bar_width: 200px;
-$side_nav_bar_hidden_width: 65px;
+// sidebar
+$side_nav_bar_width: 200px; // 侧栏伸展宽度
+$side_nav_bar_background_color: #2f3640;
+$side_nav_bar_hidden_width: 50px; // 侧栏收缩宽度
+$side_nav_bar_svg_size: 18px; // 侧栏图标大小
+$side_active_color: #FFFFFF; // 激活文字颜色
+$side_active_background_color: #21262D; // 激活背景颜色
+$side_word_color: #ACB5C2; // 文字颜色
+$side_child_height: 30px; // 侧栏每一子项的高度
+$side_parent_height: 50px; // 侧栏每一父项的高度
 
 :export {
   header_height: $header_height;
+  breadcrumb_height: $breadcrumb_height;
   header_background_color: $header_background_color;
   footer_height: $footer_height;
   side_nav_bar_width: $side_nav_bar_width;
   side_nav_bar_hidden_width: $side_nav_bar_hidden_width;
+  side_nav_bar_background_color: $side_nav_bar_background_color;
+  side_nav_bar_svg_size: $side_nav_bar_svg_size;
+  side_active_color: $side_active_color;
+  side_word_color: $side_word_color;
+  side_child_height: $side_child_height;
+  side_parent_height: $side_parent_height;
 }

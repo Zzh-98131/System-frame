@@ -1,0 +1,64 @@
+// layout
+
+// header
+.app_wrapper .el-header{
+  position: fixed;
+  top: 0;
+  z-index: 99;
+  overflow: hidden;
+  width: 100%;
+
+  .breadcrumb_wrap{
+    padding: 10px 10px 8px 15px;
+    height: $breadcrumb_height;
+    background-color: #FFFFFF;
+  }
+  .breadcrumb_title{
+    color: #333333 !important;
+  }
+  .breadcrumb_now{
+    color: #777777;
+  }
+}
+
+// main
+.app_wrapper .el-main{
+  margin: calc(#{$header_height} + #{$breadcrumb_height} + 18px) 0 0 0; /*后面要加上面包屑的上下padding值的和*/
+  min-height: calc(100vh - #{$header_height} - #{$breadcrumb_height} - #{$footer_height} - 18px); /*最小高度=屏幕高度-(头部高度+面包屑高度+面包屑上下padding+尾部高度)*/
+
+  .app-main{
+    padding: 10px;
+  }
+}
+
+// footer
+.app_wrapper .el-footer{
+  width: 100%;
+  bottom: 0;
+  color: #333333;
+  padding: 20px 10px 10px 10px;
+  font-size: 12px;
+  text-align: center;
+
+  .app_footer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    a{
+      text-decoration: none;
+      color: #337ecc;
+      &:hover{
+        color: #24588f;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+.app_wrapper .app_aside {
+  overflow: hidden;
+  .svg-icon{
+    font-size: $side_nav_bar_svg_size;
+  }
+}

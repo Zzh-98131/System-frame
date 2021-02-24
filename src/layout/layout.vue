@@ -1,16 +1,17 @@
 <template>
-  <div :class="classObj" class="app-wrapper">
+  <div :class="classObj" class="app_wrapper">
     <el-container>
-      <Sidebar class="sidebar-container" />
-      <el-container direction="vertical"  class="main-wrapper">
-        <el-header :height="variables.header_height">
-          <Header />
+      <nav-bar-item class="sidebar_container" />
+      <el-container direction="vertical"  class="main_wrapper">
+        <el-header :height="variables.header_height + variables.breadcrumb_height">
+          <header-item />
+          <breadcrumb-item></breadcrumb-item>
         </el-header>
         <el-main>
-          <AppMain />
+          <app-main-item />
         </el-main>
-        <el-footer>
-          <Footer />
+        <el-footer :height="variables.footer_height">
+          <footer-item />
         </el-footer>
       </el-container>
     </el-container>
@@ -20,19 +21,21 @@
 <script>
   import { mapState } from 'vuex'
 
-  import Sidebar from './components/nav_bar/side_nav_bar.vue'
-  import Header from './components/app_header.vue'
-  import AppMain from'./components/app_main.vue'
-  import Footer from './components/app_footer.vue'
+  import NavBarItem from './components/nav_bar/nav_bar_item.vue'
+  import HeaderItem from './components/app_header/app_header_item.vue'
+  import BreadcrumbItem from './components/app_header/breadcrumb_item.vue'
+  import AppMainItem from'./components/app_main_item.vue'
+  import FooterItem from './components/app_footer_item.vue'
 
   import variables from '@/assets/styles/elements/variables.scss'
   export default {
     name: 'Layout',
     components: {
-      Sidebar,
-      Header,
-      AppMain,
-      Footer
+      NavBarItem,
+      HeaderItem,
+      BreadcrumbItem,
+      AppMainItem,
+      FooterItem
     },
     computed: {
       ...mapState({
@@ -40,7 +43,7 @@
       }),
       classObj() {
         return {
-          hideSidebar: !this.sidebar.opened,
+          hide_side_bar: !this.sidebar.opened,
         }
       },
       variables() {

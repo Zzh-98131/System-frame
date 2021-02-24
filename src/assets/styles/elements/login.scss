@@ -1,0 +1,99 @@
+// 登录页涉及Element UI样式
+
+/****** 变量设置 ******/
+$font_size: 18px;
+$svg_color: #333333; // 图标颜色
+
+// 输入框
+$input_height: 46px; // 输入框高度
+$slot_width: 50px; // 插入部分宽度
+$slot_svg_size: 25px; // 插入部分图标大小
+
+// 登录按钮
+$button_height: 45px;
+$button_background_color: #337ECC;
+$button_touch_color: #2965A3; // hover&active颜色
+
+// 语言下拉框
+$select_width: 150px;
+$select_height: 40px;
+$select_font_size: 16px;
+
+
+// 登录页登录卡样式
+.login_wrapper {
+
+  // 表单
+  .el-form {
+    margin: 0px 25px;
+  }
+
+  // 卡片
+  .el-card__header {
+    padding: 0px;
+    border: none;
+  }
+  .el-card__body {
+    padding: 20px 0px 0px 0px;
+  }
+
+  // 输入框
+  .el-input__inner {
+    height: $input_height;
+    font-size: $font_size;
+  }
+  .el-icon-circle-close:before, .el-icon-view:before { // 框内小图标
+    font-size: $font_size; // 小图标大小
+    color: $svg_color;
+    position: relative;
+    top: 4px;
+  }
+  .el-input-group__prepend { // 输入框前置样式
+    padding: 0;
+    color: $svg_color;
+    font-size: $slot_svg_size;
+    width: $slot_width;
+
+    .svg-icon{
+      cursor: pointer;
+    }
+  }
+
+  // 登录按钮
+  .el-button--primary { // 登录按钮
+    height: $button_height;
+    color: #FFFFFF;
+    border-radius: 6px;
+    background-color: $button_background_color;
+    &:hover, &:active {
+      background-color: $button_touch_color;
+    }
+
+    span {
+      font-size: $font_size;
+    }
+  }
+
+  // 语言选项
+  .login_select {
+
+    .el-input__inner {
+      width: $select_width;
+      height: $select_height;
+      font-size: $select_font_size;
+    }
+
+    .el-select-dropdown__item { // 下拉框样式
+      font-size: $select_font_size;
+    }
+
+    .el-select-dropdown__item.selected { // 下拉框选中样式
+
+    }
+
+    .el-icon-arrow-up:before {
+      color: $svg_color;
+    }
+  }
+
+}
